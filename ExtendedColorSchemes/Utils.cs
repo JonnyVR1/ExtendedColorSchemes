@@ -10,12 +10,14 @@ namespace ExtendedColorSchemes
         {
             internal string _colorSchemeId = "Default";
             internal string _colorSchemeNameLocalizationKey = "Default";
+            internal string _nonLocalizedName = "Default";
+            internal bool _useNonLocalizedName;
             internal bool _isEditable = true;
             internal Color _saberAColor = Color.white;
             internal Color _saberBColor = Color.white;
             internal Color _environmentColor0 = Color.white;
             internal Color _environmentColor1 = Color.white;
-            internal bool _supportsEnvironmentColorBoost = false;
+            internal bool _supportsEnvironmentColorBoost;
             internal Color _environmentColor0Boost = Color.white;
             internal Color _environmentColor1Boost = Color.white;
             internal Color _obstaclesColor = Color.white;
@@ -25,12 +27,14 @@ namespace ExtendedColorSchemes
                 return new ColorScheme(
                     _colorSchemeId,
                     _colorSchemeNameLocalizationKey,
+                    _useNonLocalizedName,
+                    _nonLocalizedName,
                     _isEditable,
                     _saberAColor,
                     _saberBColor,
                     _environmentColor0,
                     _environmentColor1,
-                    _supportsEnvironmentColorBoost,
+                    true,
                     _environmentColor0Boost,
                     _environmentColor1Boost,
                     _obstaclesColor
@@ -44,12 +48,14 @@ namespace ExtendedColorSchemes
             {
                 _colorSchemeId = colorScheme.colorSchemeId,
                 _colorSchemeNameLocalizationKey = colorScheme.colorSchemeNameLocalizationKey,
+                _useNonLocalizedName = colorScheme.useNonLocalizedName,
+                _nonLocalizedName = colorScheme.nonLocalizedName,
                 _isEditable = colorScheme.isEditable,
                 _saberAColor = colorScheme.saberAColor,
                 _saberBColor = colorScheme.saberBColor,
                 _environmentColor0 = colorScheme.environmentColor0,
                 _environmentColor1 = colorScheme.environmentColor1,
-                _supportsEnvironmentColorBoost = colorScheme.supportsEnvironmentColorBoost,
+                _supportsEnvironmentColorBoost = true,
                 _environmentColor0Boost = colorScheme.environmentColor0Boost,
                 _environmentColor1Boost = colorScheme.environmentColor1Boost,
                 _obstaclesColor = colorScheme.obstaclesColor
@@ -62,9 +68,9 @@ namespace ExtendedColorSchemes
         {
             var stackTrace = new StackTrace();
 
-            for (int i = 1; i < stackTrace.FrameCount; i++)
+            for (var i = 1; i < stackTrace.FrameCount; i++)
             {
-                string callMethod = stackTrace.GetFrame(i).GetMethod().Name;
+                var callMethod = stackTrace.GetFrame(i).GetMethod().Name;
 
                 if (debug)
                     Plugin.Log.Notice($"callMethod={callMethod}");
