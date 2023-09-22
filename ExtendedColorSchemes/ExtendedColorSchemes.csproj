@@ -151,11 +151,8 @@
     <EmbeddedResource Include="Resources\locales.csv" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BeatSaberModdingTools.Tasks">
-      <Version>1.4.3</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    <PackageReference Include="BeatSaberModdingTools.Tasks" Version="1.4.3" />
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.*" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
